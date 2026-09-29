@@ -1,155 +1,1403 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lumina Apps</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<title>Lumina Apps</title>
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f2f5f8;
-            color: #17202a;
-        }
+<style>
+* {
+    box-sizing: border-box;
+}
 
-        header {
-            background: white;
-            border-bottom: 1px solid #ddd;
-            padding: 15px 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+:root {
+    --bg: #eef2f6;
+    --card: #ffffff;
+    --text: #18202a;
+    --muted: #687381;
+    --line: #dce2e8;
+    --accent: #2878ff;
+    --accent-dark: #1458c9;
+}
 
-        .logo {
-            font-size: 22px;
-            font-weight: bold;
-        }
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
 
-        .search {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            width: 250px;
-        }
+/* =========================
+   BARRA SUPERIOR
+========================= */
 
-        main {
-            max-width: 1000px;
-            margin: auto;
-            padding: 30px 20px;
-        }
+.topbar {
+    height: 64px;
+    background: white;
+    border-bottom: 1px solid var(--line);
 
-        .hero {
-            background: white;
-            border-radius: 18px;
-            padding: 30px;
-            margin-bottom: 25px;
-        }
+    display: flex;
+    align-items: center;
+    gap: 15px;
 
-        .hero h1 {
-            margin-top: 0;
-        }
+    padding: 0 22px;
 
-        .apps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
-        }
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
 
-        .app {
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            border: 1px solid #ddd;
-        }
+.logo {
+    font-size: 21px;
+    font-weight: bold;
+    white-space: nowrap;
+}
 
-        .icon {
-            font-size: 40px;
-        }
+.logo span {
+    color: var(--accent);
+}
 
-        .button {
-            display: inline-block;
-            background: #111;
-            color: white;
-            padding: 9px 14px;
-            border-radius: 9px;
-            text-decoration: none;
-            margin-top: 10px;
-        }
+.search {
+    flex: 1;
+    max-width: 520px;
 
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: #777;
-        }
+    padding: 11px 14px;
 
-        @media (max-width: 600px) {
-            header {
-                flex-direction: column;
-                gap: 10px;
-            }
+    border: 1px solid var(--line);
+    border-radius: 12px;
 
-            .search {
-                width: 100%;
-            }
-        }
-    </style>
+    background: #f7f9fb;
+
+    outline: none;
+}
+
+.search:focus {
+    border-color: var(--accent);
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.nav-button {
+    border: 0;
+    border-radius: 10px;
+
+    padding: 10px 14px;
+
+    background: #eef2f6;
+}
+
+/* =========================
+   CONTENIDO
+========================= */
+
+main {
+    max-width: 1100px;
+    margin: auto;
+
+    padding: 28px 20px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    background: linear-gradient(
+        135deg,
+        #ffffff,
+        #e8f1ff
+    );
+
+    border: 1px solid var(--line);
+
+    border-radius: 20px;
+
+    padding: 30px;
+
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    margin: 0 0 8px;
+
+    font-size: 30px;
+}
+
+.hero p {
+    margin: 0;
+
+    color: var(--muted);
+}
+
+/* =========================
+   TOOLBAR
+========================= */
+
+.toolbar {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 20px 0;
+}
+
+.toolbar h2 {
+    margin: 0;
+}
+
+/* =========================
+   BOTONES
+========================= */
+
+.primary {
+    border: 0;
+
+    background: var(--accent);
+
+    color: white;
+
+    padding: 10px 14px;
+
+    border-radius: 10px;
+}
+
+.primary:hover {
+    background: var(--accent-dark);
+}
+
+.secondary {
+    border: 0;
+
+    background: #edf1f5;
+
+    padding: 10px 14px;
+
+    border-radius: 10px;
+}
+
+/* =========================
+   APPS
+========================= */
+
+.grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(220px, 1fr)
+        );
+
+    gap: 16px;
+}
+
+.app {
+    background: var(--card);
+
+    border: 1px solid var(--line);
+
+    border-radius: 17px;
+
+    padding: 17px;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,0.04);
+}
+
+.icon {
+    width: 64px;
+    height: 64px;
+
+    border-radius: 15px;
+
+    background: #eef2f7;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 35px;
+
+    overflow: hidden;
+
+    margin-bottom: 12px;
+}
+
+.icon img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.app h3 {
+    margin: 0 0 5px;
+}
+
+.app p {
+    color: var(--muted);
+
+    font-size: 14px;
+
+    min-height: 38px;
+}
+
+.meta {
+    color: var(--muted);
+
+    font-size: 12px;
+
+    margin-bottom: 10px;
+}
+
+.actions {
+    display: flex;
+
+    gap: 8px;
+}
+
+.actions button {
+    flex: 1;
+}
+
+.empty {
+    padding: 35px;
+
+    text-align: center;
+
+    color: var(--muted);
+
+    background: white;
+
+    border: 1px dashed var(--line);
+
+    border-radius: 16px;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,0.55);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 100;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.dialog {
+    background: white;
+
+    border-radius: 18px;
+
+    width: min(500px, 100%);
+
+    padding: 22px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+}
+
+.dialog h2 {
+    margin-top: 0;
+}
+
+.field {
+    margin: 13px 0;
+}
+
+.field label {
+    display: block;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    margin-bottom: 6px;
+}
+
+.field input {
+    width: 100%;
+
+    padding: 10px;
+
+    border: 1px solid var(--line);
+
+    border-radius: 9px;
+}
+
+.drop {
+    border: 2px dashed #c9d2dd;
+
+    border-radius: 13px;
+
+    padding: 20px;
+
+    text-align: center;
+
+    color: var(--muted);
+
+    cursor: pointer;
+}
+
+.drop:hover {
+    border-color: var(--accent);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+
+    color: var(--muted);
+
+    padding: 35px;
+}
+
+/* =========================
+   MODO PANTALLA PEQUEÑA
+========================= */
+
+@media (max-width: 650px) {
+
+    .topbar {
+        padding: 0 12px;
+
+        gap: 8px;
+    }
+
+    .logo {
+        font-size: 17px;
+    }
+
+    .nav-button {
+        display: none;
+    }
+
+    .search {
+        max-width: none;
+    }
+
+    .hero {
+        padding: 22px;
+    }
+
+    .hero h1 {
+        font-size: 25px;
+    }
+
+    .toolbar {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 10px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================
+   MODO LUMINA POCKET LITE
+========================= */
+
+@media (max-width: 180px) {
+
+    body {
+        background: black;
+
+        color: white;
+
+        font-family: monospace;
+
+        font-size: 8px;
+    }
+
+    .topbar {
+        height: 12px;
+
+        padding: 1px 3px;
+
+        background: black;
+
+        border-bottom: 1px solid white;
+    }
+
+    .logo {
+        font-size: 8px;
+    }
+
+    .search {
+        width: 55px;
+
+        padding: 1px;
+
+        font-size: 7px;
+
+        background: black;
+
+        color: white;
+
+        border: 1px solid white;
+    }
+
+    main {
+        padding: 4px;
+    }
+
+    .hero {
+        padding: 5px;
+
+        border-radius: 0;
+
+        background: black;
+
+        border: 1px solid white;
+    }
+
+    .hero h1 {
+        font-size: 10px;
+    }
+
+    .hero p {
+        display: none;
+    }
+
+    .toolbar {
+        margin: 4px 0;
+    }
+
+    .toolbar h2 {
+        font-size: 9px;
+    }
+
+    .grid {
+        display: block;
+    }
+
+    .app {
+        display: flex;
+
+        align-items: center;
+
+        gap: 4px;
+
+        padding: 3px;
+
+        margin-bottom: 3px;
+
+        border-radius: 0;
+
+        background: black;
+
+        border: 1px solid white;
+    }
+
+    .icon {
+        width: 20px;
+        height: 20px;
+
+        min-width: 20px;
+
+        margin: 0;
+
+        font-size: 12px;
+
+        border-radius: 2px;
+
+        background: black;
+    }
+
+    .app h3 {
+        font-size: 8px;
+
+        margin: 0;
+    }
+
+    .app p,
+    .meta,
+    .app .secondary {
+        display: none;
+    }
+
+    .actions {
+        margin-left: auto;
+    }
+
+    .actions .primary {
+        padding: 2px 4px;
+
+        font-size: 7px;
+
+        border-radius: 2px;
+    }
+
+    footer {
+        display: none;
+    }
+}
+</style>
 </head>
 
 <body>
 
-<header>
-    <div class="logo">🌐 Lumina Apps</div>
-    <input class="search" placeholder="Buscar apps...">
+<!-- =========================
+     BARRA SUPERIOR
+========================= -->
+
+<header class="topbar">
+
+    <div class="logo">
+        ◈ <span>Lumina</span> Apps
+    </div>
+
+    <input
+        id="search"
+        class="search"
+        type="text"
+        placeholder="Buscar apps..."
+    >
+
+    <button
+        class="nav-button"
+        onclick="openUpload()"
+    >
+        ＋ Publicar
+    </button>
+
 </header>
+
+
+<!-- =========================
+     CONTENIDO
+========================= -->
 
 <main>
 
     <section class="hero">
-        <h1>Apps para Lumina Pocket</h1>
+
+        <h1>
+            Apps para Lumina Pocket
+        </h1>
+
         <p>
-            Descubre aplicaciones y juegos creados para
-            Lumina Pocket y Lumina Pocket Lite.
+            Descubre juegos, herramientas y
+            aplicaciones para Lumina Pocket
+            y Pocket Lite.
         </p>
-    </section>
-
-    <h2>Aplicaciones</h2>
-
-    <section class="apps">
-
-        <div class="app">
-            <div class="icon">🐍</div>
-            <h3>Snake</h3>
-            <p>El clásico juego de serpiente para Lumina.</p>
-            <a class="button" href="#">Ver app</a>
-        </div>
-
-        <div class="app">
-            <div class="icon">🧮</div>
-            <h3>Calculator</h3>
-            <p>Una calculadora sencilla para Pocket.</p>
-            <a class="button" href="#">Ver app</a>
-        </div>
-
-        <div class="app">
-            <div class="icon">📝</div>
-            <h3>Lumina Notes</h3>
-            <p>Notas simples para tu dispositivo.</p>
-            <a class="button" href="#">Ver app</a>
-        </div>
 
     </section>
+
+
+    <div class="toolbar">
+
+        <h2>
+            Aplicaciones
+        </h2>
+
+        <button
+            class="primary"
+            onclick="openUpload()"
+        >
+            ＋ Añadir app
+        </button>
+
+    </div>
+
+
+    <section
+        id="appGrid"
+        class="grid"
+    ></section>
 
 </main>
 
+
 <footer>
-    Lumina Apps · Lumina Pocket Project
+
+    Lumina Apps ·
+    Lumina Pocket Project
+
 </footer>
+
+
+<!-- =========================
+     VENTANA PUBLICAR APP
+========================= -->
+
+<div
+    id="uploadModal"
+    class="modal"
+>
+
+    <div class="dialog">
+
+        <h2>
+            Publicar aplicación
+        </h2>
+
+
+        <div class="field">
+
+            <label>
+                Nombre
+            </label>
+
+            <input
+                id="appName"
+                type="text"
+                placeholder="Ej. Snake"
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Descripción
+            </label>
+
+            <input
+                id="appDescription"
+                type="text"
+                placeholder="Juego para Lumina Pocket"
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Versión
+            </label>
+
+            <input
+                id="appVersion"
+                type="text"
+                value="1.0"
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Compatibilidad
+            </label>
+
+            <input
+                id="appDevice"
+                type="text"
+                value="Pocket Lite, Pocket"
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Icono
+            </label>
+
+            <div
+                class="drop"
+                onclick="document.getElementById('iconFile').click()"
+            >
+                🖼️ Elegir icono
+            </div>
+
+            <input
+                id="iconFile"
+                type="file"
+                accept="image/*"
+                hidden
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Archivo de aplicación
+            </label>
+
+            <div
+                class="drop"
+                onclick="document.getElementById('appFile').click()"
+            >
+                📦 Elegir .cpp o .lapp
+            </div>
+
+            <input
+                id="appFile"
+                type="file"
+                accept=".cpp,.lapp,.zip"
+                hidden
+            >
+
+        </div>
+
+
+        <div
+            style="
+            display:flex;
+            gap:8px;
+            justify-content:flex-end;
+            margin-top:18px;
+            "
+        >
+
+            <button
+                class="secondary"
+                onclick="closeUpload()"
+            >
+                Cancelar
+            </button>
+
+            <button
+                class="primary"
+                onclick="addApp()"
+            >
+                Añadir al catálogo
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   APPS INICIALES
+========================= */
+
+let apps = [
+
+    {
+        id: "snake",
+
+        name: "Snake",
+
+        description:
+            "El clásico juego de serpiente para Lumina.",
+
+        version: "1.0",
+
+        device:
+            "Pocket Lite, Pocket",
+
+        icon: "🐍"
+    },
+
+
+    {
+        id: "calculator",
+
+        name: "Calculator",
+
+        description:
+            "Una calculadora sencilla para Pocket.",
+
+        version: "1.0",
+
+        device:
+            "Pocket Lite, Pocket",
+
+        icon: "🧮"
+    },
+
+
+    {
+        id: "notes",
+
+        name: "Lumina Notes",
+
+        description:
+            "Notas simples para tu dispositivo.",
+
+        version: "1.0",
+
+        device:
+            "Pocket",
+
+        icon: "📝"
+    }
+
+];
+
+
+/* =========================
+   GUARDAR APPS
+========================= */
+
+const savedApps =
+    localStorage.getItem(
+        "lumina_apps"
+    );
+
+
+if (savedApps) {
+
+    apps =
+        JSON.parse(savedApps);
+
+}
+
+
+/* =========================
+   RENDERIZAR
+========================= */
+
+function renderApps() {
+
+    const grid =
+        document.getElementById(
+            "appGrid"
+        );
+
+
+    const search =
+        document
+        .getElementById("search")
+        .value
+        .toLowerCase();
+
+
+    const filtered =
+        apps.filter(
+            app =>
+                app.name
+                .toLowerCase()
+                .includes(search)
+        );
+
+
+    if (filtered.length === 0) {
+
+        grid.innerHTML = `
+            <div class="empty">
+                No se encontraron aplicaciones.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    grid.innerHTML = "";
+
+
+    filtered.forEach(app => {
+
+        const card =
+            document.createElement(
+                "article"
+            );
+
+        card.className = "app";
+
+
+        const icon =
+            document.createElement(
+                "div"
+            );
+
+        icon.className = "icon";
+
+
+        if (
+            app.icon &&
+            app.icon.startsWith("data:")
+        ) {
+
+            const image =
+                document.createElement(
+                    "img"
+                );
+
+            image.src =
+                app.icon;
+
+            icon.appendChild(
+                image
+            );
+
+        } else {
+
+            icon.textContent =
+                app.icon || "📦";
+
+        }
+
+
+        const title =
+            document.createElement(
+                "h3"
+            );
+
+        title.textContent =
+            app.name;
+
+
+        const description =
+            document.createElement(
+                "p"
+            );
+
+        description.textContent =
+            app.description;
+
+
+        const meta =
+            document.createElement(
+                "div"
+            );
+
+        meta.className =
+            "meta";
+
+        meta.textContent =
+            "v" +
+            app.version +
+            " · " +
+            app.device;
+
+
+        const actions =
+            document.createElement(
+                "div"
+            );
+
+        actions.className =
+            "actions";
+
+
+        const download =
+            document.createElement(
+                "button"
+            );
+
+        download.className =
+            "primary";
+
+        download.textContent =
+            "Descargar";
+
+
+        download.onclick =
+            function () {
+
+                downloadApp(
+                    app
+                );
+
+            };
+
+
+        const info =
+            document.createElement(
+                "button"
+            );
+
+        info.className =
+            "secondary";
+
+        info.textContent =
+            "Info";
+
+
+        info.onclick =
+            function () {
+
+                showInfo(
+                    app
+                );
+
+            };
+
+
+        actions.appendChild(
+            download
+        );
+
+        actions.appendChild(
+            info
+        );
+
+
+        card.appendChild(
+            icon
+        );
+
+        card.appendChild(
+            title
+        );
+
+        card.appendChild(
+            description
+        );
+
+        card.appendChild(
+            meta
+        );
+
+        card.appendChild(
+            actions
+        );
+
+
+        grid.appendChild(
+            card
+        );
+
+    });
+
+}
+
+
+/* =========================
+   BUSCAR
+========================= */
+
+document
+    .getElementById("search")
+    .addEventListener(
+        "input",
+        renderApps
+    );
+
+
+/* =========================
+   MODAL
+========================= */
+
+function openUpload() {
+
+    document
+        .getElementById(
+            "uploadModal"
+        )
+        .classList.add(
+            "show"
+        );
+
+}
+
+
+function closeUpload() {
+
+    document
+        .getElementById(
+            "uploadModal"
+        )
+        .classList.remove(
+            "show"
+        );
+
+}
+
+
+/* =========================
+   ICONO
+========================= */
+
+let selectedIcon = null;
+
+
+document
+    .getElementById("iconFile")
+    .addEventListener(
+        "change",
+        function(event) {
+
+            const file =
+                event.target.files[0];
+
+
+            if (!file) {
+                return;
+            }
+
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                function() {
+
+                    selectedIcon =
+                        reader.result;
+
+                };
+
+
+            reader.readAsDataURL(
+                file
+            );
+
+        }
+    );
+
+
+/* =========================
+   AÑADIR APP
+========================= */
+
+function addApp() {
+
+    const name =
+        document
+        .getElementById(
+            "appName"
+        )
+        .value
+        .trim();
+
+
+    const description =
+        document
+        .getElementById(
+            "appDescription"
+        )
+        .value
+        .trim();
+
+
+    const version =
+        document
+        .getElementById(
+            "appVersion"
+        )
+        .value
+        .trim();
+
+
+    const device =
+        document
+        .getElementById(
+            "appDevice"
+        )
+        .value
+        .trim();
+
+
+    const file =
+        document
+        .getElementById(
+            "appFile"
+        )
+        .files[0];
+
+
+    if (!name) {
+
+        alert(
+            "Escribe el nombre de la aplicación."
+        );
+
+        return;
+    }
+
+
+    if (!file) {
+
+        alert(
+            "Selecciona un archivo .cpp o .lapp."
+        );
+
+        return;
+    }
+
+
+    const newApp = {
+
+        id:
+            Date.now()
+            .toString(),
+
+        name:
+            name,
+
+        description:
+            description ||
+            "Aplicación para Lumina.",
+
+        version:
+            version ||
+            "1.0",
+
+        device:
+            device ||
+            "Pocket Lite, Pocket",
+
+        icon:
+            selectedIcon ||
+            "📦",
+
+        fileName:
+            file.name
+
+    };
+
+
+    apps.unshift(
+        newApp
+    );
+
+
+    localStorage.setItem(
+        "lumina_apps",
+        JSON.stringify(
+            apps
+        )
+    );
+
+
+    renderApps();
+
+
+    closeUpload();
+
+
+    alert(
+        "¡App añadida al catálogo!"
+    );
+
+
+    document
+        .getElementById(
+            "appName"
+        )
+        .value = "";
+
+
+    document
+        .getElementById(
+            "appDescription"
+        )
+        .value = "";
+
+
+    document
+        .getElementById(
+            "appFile"
+        )
+        .value = "";
+
+
+    document
+        .getElementById(
+            "iconFile"
+        )
+        .value = "";
+
+
+    selectedIcon =
+        null;
+
+}
+
+
+/* =========================
+   DESCARGAR
+========================= */
+
+function downloadApp(app) {
+
+    /*
+       Por ahora las apps de demostración
+       no tienen un archivo real.
+
+       Más adelante conectaremos esta función
+       con los archivos .lapp de GitHub.
+    */
+
+    if (!app.fileName) {
+
+        alert(
+            "Esta aplicación todavía es una demo."
+        );
+
+        return;
+    }
+
+
+    alert(
+        "La descarga de " +
+        app.fileName +
+        " se conectará en la siguiente versión."
+    );
+
+}
+
+
+/* =========================
+   INFORMACIÓN
+========================= */
+
+function showInfo(app) {
+
+    alert(
+
+        app.name +
+
+        "\n\n" +
+
+        app.description +
+
+        "\n\nVersión: " +
+        app.version +
+
+        "\nCompatible: " +
+        app.device
+
+    );
+
+}
+
+
+/* =========================
+   INICIAR
+========================= */
+
+renderApps();
+
+</script>
 
 </body>
 </html>
+```
